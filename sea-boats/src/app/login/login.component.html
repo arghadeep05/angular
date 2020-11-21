@@ -1,0 +1,32 @@
+<!-- <form #login="ngForm" (ngSubmit)="submit(username, password)">
+  <div>
+      <label>UserName: </label>
+      <input type="text" name="username" #user="ngModel" [(ngModel)]="username" (blur)="fun()" required="required" minlength="4">
+  </div>
+<div *ngIf="!user.valid" >username is required</div>
+  <div>
+      <label>Password: </label>
+      <input type="password" name="password" #pass="ngModel" [(ngModel)]="password">
+  </div>
+  <div>
+  <input type="submit" value="login" [disabled]="!login.form.valid" [ngClass]="{'btn-info':true}">
+  </div>
+</form> -->
+
+<form [formGroup]="loginForm" (ngSubmit)="submit()">
+  <div>
+      <label>UserName: </label>
+      <input type="text" formControlName="username" >
+  </div>
+  <div *ngIf="loginForm.controls.username.hasError('userName')">pattern invalid</div>
+  <!-- <div *ngIf="loginForm.controls.username.hasError('required')">username required</div>
+  <div *ngIf="loginForm.controls.username.hasError('minlength')">username should be atleast 4 characters</div> -->
+{{loginForm.get('username').valid}}
+  <div>
+      <label>Password: </label>
+      <input type="password" formControlName="password">
+  </div>
+  <div>
+  <input type="submit" value="login" >
+  </div>
+</form>

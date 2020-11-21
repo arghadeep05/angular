@@ -1,0 +1,52 @@
+<h3>Boat Id to update: {{receivedBoat.boatId}}</h3>
+<form (ngSubmit)="updateBoatDetails()" #boatUpdateForm="ngForm">
+<table class="table">
+  <tr>
+    <th>Boat Type:</th>
+    <div *ngFor="let boatType of boatTypes">
+      <input [(ngModel)]="boatToUpdate.boatType" type="radio" [value]="boatType" name="boatType" />
+      {{boatType}}
+    </div>
+</tr>
+    <tr>
+      <th>Location:</th>
+      <select class="form-control" [(ngModel)]="boatToUpdate.location" name="location" #location="ngModel"> <!--Line1-->
+           <option *ngFor="let location of locations" [value]="location">{{location}}</option><!--Line2-->
+      </select>
+   </tr>
+    <tr>
+      <th>Description:</th>
+      <td>
+        <textarea required cols="40" rows="3" [(ngModel)]="receivedBoat.description" name="description"></textarea>
+      </td>
+  </tr>
+  <tr>
+      <th>Base Price:</th>
+      <td>
+        <input type="number" class="form-control" [(ngModel)]="receivedBoat.basePrice" min="100" name="basePrice" />
+      </td>
+  </tr>
+  <tr>
+      <th>Discount:</th>
+      <td>
+      <input type="number" class="form-control" [(ngModel)]="receivedBoat.discount" name="discount"/>
+      </td>
+  </tr>
+  <tr>
+      <th>Booking stats from:</th>
+      <td>
+        <input type="date" class="form-control" [(ngModel)]="receivedBoat.bookingStart" name="bookingStart"/>
+       </td>
+  </tr>
+  <tr>
+      <th>Days allowed for Booking:</th>
+      <td>
+        <input type="number" class="form-control" [(ngModel)]="receivedBoat.allowedDays" name="allowedDays" />
+      </td>
+  </tr>
+</table>
+</form>
+<div class="row">
+  <button [disabled]="!boatUpdateForm.form.valid || boatUpdateForm.form.pristine"
+          class="col-md-4 col-md-offset-4 btn btn-success">Update Details</button>
+</div>

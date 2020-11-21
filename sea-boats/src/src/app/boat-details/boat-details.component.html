@@ -1,0 +1,39 @@
+<div class="row">
+  <button class="col-md-4 col-md-offset-4 btn btn-success" (click)="modifyVariablesOnClick()">Modify and Update Details</button>
+</div>
+<div *ngIf="chosenBoat!=undefined && display && !updateCheck">
+<h3>The details of Boat: {{chosenBoat.boatId}}</h3>
+<table [ngClass]="{'table':true, 'table-responsive':true}">
+    <tr>
+        <th>Boat Type:</th>
+        <td>{{chosenBoat.boatType}}</td>
+    </tr>
+    <tr>
+        <th>Location:</th>
+        <td>{{chosenBoat.location}}</td>
+    </tr>
+    <tr>
+        <th>Description:</th>
+        <td>{{chosenBoat.description}}</td>
+    </tr>
+    <tr>
+        <th>Base Price:</th>
+        <td>{{chosenBoat.basePrice}}</td>
+    </tr>
+    <tr>
+        <th>Discount:</th>
+        <td>{{chosenBoat.discount | percent}}</td>
+    </tr>
+    <tr>
+        <th>Booking starts from:</th>
+        <td>{{chosenBoat.bookingStart | date:'fullDate'}}</td>
+    </tr>
+    <tr>
+        <th>Allowed days:</th>
+        <td>{{chosenBoat.allowedDays | days}}</td>
+    </tr>
+</table>
+</div>
+<div class="col-md-5 bordering-side text-justify" *ngIf="updateCheck">
+  <update-boat [receivedBoat]="chosenBoat"></update-boat>
+</div>

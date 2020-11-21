@@ -1,0 +1,51 @@
+<div *ngIf="!addBoatFlag"><!-- Line 1 -->
+  <h3>Showing all the operational boats across India</h3>
+</div>
+<div class="row">
+  <div class="col-md-5 col-md-offset-1 bordering" *ngIf="!addBoatFlag"><!-- Line 2 -->
+      <div class="text-left">
+          <button class="btn-link anchor-link !important" (click)="addBoat()"><!-- Line 3 -->
+              <h4>Click here to Add a new Boat</h4>
+          </button>
+      </div>
+        <table [ngClass]="{'table':true,'table-striped':true,
+'table-responsive':true}">
+
+        <thead>
+            <tr>
+                <th >Boat Type</th>
+                <th >Location</th>
+                <th >Base Price</th>
+                <th >Booking starts from</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let boat of boatData">
+              <td>{{boat.boatType | uppercase}}</td>
+                <td>{{boat.location}}</td>
+                <td>{{boat.basePrice | currency:'USD':true}}</td>
+                <td>{{boat.bookingStart | date:'dd MMM, yyyy'}}</td>
+                <td>
+    <button Class="btn btn-success btn-sm"
+    (click)="showBoat(boat)">View or Update Details</button>
+</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+  <div *ngIf="showDetailFlag"> <!-- Line 4 -->
+    <div class="col-md-5 bordering-side ">
+    <boat-details [chosenBoat]="displayBoat"></boat-details>
+  </div>
+  </div>
+  <boat-add *ngIf="addBoatFlag"></boat-add> <!-- Line 5 -->
+</div>
+
+<!-- The div showing the boats details should be coded below. Make necessary modification  -->
+
+
+
+
